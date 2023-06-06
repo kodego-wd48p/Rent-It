@@ -1,17 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Rent-IT') }}
         </h2>
     </x-slot>
+    <div style="margin-top: 25px;">
+        <!-- <a class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" href="/listings/index">Show Listings</a>
+        <a class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" href="/messages">Show Messages</a> -->
+        
+<div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px">
+        <li class="mr-2">
+            <a href="{{route('listings.index')}}" class="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" aria-current="page">SHOW LISTINGS</a>
+        </li>
+        <li class="mr-2">
+            <a href="/messages" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">MESSAGES</a>
+        </li>
+        <li class="mr-2">
+            <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Settings</a>
+        </li>
+    </ul>
+</div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
+</div>   
 </x-app-layout>

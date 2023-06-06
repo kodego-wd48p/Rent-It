@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ListingController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//listings
+// Route::get('/listings/index', [ListingController::class, 'index']);
+
+// Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Route::post('/listings/store', [ListingController::class, 'store']);
+
+// Route::get('/listings/edit', [ListingController::class, 'edit']);
+
+// Route::put('/listings/update', [ListingController::class, 'update']);
+
+// Route::delete('/listings/{id}', [ListingController::class, 'destroy']);
+
+Route::resource('listings', ListingController::class);
+
+//messages
+Route::get('/messages', [MessageController::class, 'index']);
+
 Route::get('/MAINPAGE', function () {
     return view('welcome');
 })->middleware(['auth', 'verified'])->name('MAINPAGE');
@@ -31,5 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+// Route::resource('listings', ListingController::class);
 
 require __DIR__.'/auth.php';
