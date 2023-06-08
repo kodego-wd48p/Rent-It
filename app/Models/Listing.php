@@ -15,6 +15,7 @@ class Listing extends Model
         'floor_area',
         'rental_fee',
         'other_features',
-        'picture'
+        'status',
+        'image'
     ];
 }

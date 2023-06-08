@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, 'index']);
+
+
+Route::get('/MAINPAGE', [LandingPageController::class, 'index'])->middleware(['auth', 'verified'])->name('MAINPAGE');
 
 //listings
 // Route::get('/listings/index', [ListingController::class, 'index']);
@@ -38,9 +40,9 @@ Route::resource('listings', ListingController::class);
 //messages
 Route::get('/messages', [MessageController::class, 'index']);
 
-Route::get('/MAINPAGE', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified'])->name('MAINPAGE');
+// Route::get('/MAIPAGE', function () {
+//     return view('welcome');
+// })->middleware(['auth', 'verified'])->name('MAINPAGE');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -52,7 +54,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-// Route::resource('listings', ListingController::class);
 
 require __DIR__.'/auth.php';

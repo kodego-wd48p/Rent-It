@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\RouteServiceProvider;
+use Illuminate\Support\Facades\Storage;
 
 class ListingController extends Controller
 {
@@ -34,14 +35,24 @@ class ListingController extends Controller
         $request->validate([
             'property_name' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240', //10MB
         ]);
-
+           
+        if($image = $request->file('image')){ 
+            $destinationPath = 'public/images';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }    
+        
         Listing::create([
             'property_name' => $request->property_name,
             'location' => $request->location,
             'floor_area' => $request->floor_area,
             'rental_fee' => $request->rental_fee,
-            'other_features' => $request->other_features
+            'other_features' => $request->other_features,
+            'status' => $request->status,
+            'image' => $profileImage // Save the image file name to the 'image' column
         ]);
         return redirect('/listings')->with('message', 'The listing has been posted!');
     }
@@ -70,14 +81,26 @@ class ListingController extends Controller
         $request->validate([
             'property_name' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240', //10MB
         ]);
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'public/images';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
 
         $listing->update([
             'property_name' => $request->property_name,
             'location' => $request->location,
             'floor_area' => $request->floor_area,
             'rental_fee' => $request->rental_fee,
-            'other_features' => $request->other_features
+            'other_features' => $request->other_features,
+            'status' => $request->status,
+            'image' => $profileImage // Save the image file name to the 'image' column    
         ]);
         return redirect('/listings')->with('message', 'The listing has been updated!');
     }

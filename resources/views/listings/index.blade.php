@@ -18,6 +18,8 @@
                                 <th scope="col" class="px-6 py-3">Floor Area</th>
                                 <th scope="col" class="px-6 py-3">Rental Fee</th>
                                 <th scope="col" class="px-6 py-3">Other Features</th>
+                                <th scope="col" class="px-6 py-3">Status</th>
+                                <th scope="col" class="px-6 py-3">Image</th>     
                                 <th scope="col" class="px-6 py-3">Actions</th>
                             </tr>   
                         </thead>
@@ -31,6 +33,8 @@
                                 <td class="px-6 py-4">{{$list->floor_area}}</td>
                                 <td class="px-6 py-4">{{$list->rental_fee}}</td>
                                 <td class="px-6 py-4">{{$list->other_features}}</td>
+                                <td class="px-6 py-4">{{$list->status}}</td>
+                                <td class="px-6 py-4"><img src="public/images/{{ $list->image }}" width="100px"></td>
                                 <td class="px-6 py-4"><a href="{{route('listings.edit', $list)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></td>
                                 <td>
                                     <form method="POST" action="{{route('listings.destroy', $list)}}">

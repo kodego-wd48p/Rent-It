@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('floor_area')->nullable();
             $table->string('rental_fee')->nullable();
-            $table->string('picture')->nullable();
             $table->string('other_features')->nullable();
+            $table->string('status')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('user_id')->nullable()->constrained();
 
             $table->timestamps();
