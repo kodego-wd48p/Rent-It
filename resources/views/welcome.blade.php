@@ -253,8 +253,6 @@
             display: flex;
             justify-content: center;
             margin-top: 70px;
-            /* align-items: center; */
-            /* height: 100vh; Adjust as needed */
         }
     
      body {

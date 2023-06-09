@@ -4,9 +4,7 @@
             {{ __('Rent-IT') }}
         </h2>
     </x-slot>
-    <div style="margin-top: 25px;">
-        <!-- <a class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" href="/listings/index">Show Listings</a>
-        <a class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" href="/messages">Show Messages</a> -->
+    <div style="margin-top: 25px;"> 
         
 <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul class="flex flex-wrap -mb-px">
