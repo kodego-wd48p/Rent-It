@@ -43,7 +43,7 @@
 
     .main{
       max-width: 1200px;
-      margin: 0 auto;
+      margin-bottom: 100px;
     }
 
     h1 {
@@ -156,12 +156,22 @@
       background-color: #eceef9;
     }
 
-    footer {
+    /* footer {
       color: #333;
       background-color: #e6f0ff;
       position: fixed;
       bottom: 0;
-    }
+    } */
+
+    footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 50px; /* Adjust this value to match the height of your footer */
+            background-color: gray;
+            color: white;
+        }
 
     .row {
       display: flex;
@@ -234,10 +244,23 @@
 
     .copyright {
       text-align: center;
-      color: #fff;
-      background-color: #6faaff;
-      padding: 0.6rem 0;
+      color: white;
+      background-color: grey;
+      padding: 0;
     }
+
+    .center-image {
+            display: flex;
+            justify-content: center;
+            margin-top: 70px;
+            /* align-items: center; */
+            /* height: 100vh; Adjust as needed */
+        }
+    
+     body {
+         margin: 0; /* Remove default margin */
+         padding: 0; /* Remove default padding */
+     }
 
     /* Responsive adjustments */
 
@@ -272,8 +295,8 @@
     }
     </style>
     </head>
-    <body class="antialiased">
-        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+      <body class="antialiased">
+        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center    bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
@@ -288,8 +311,10 @@
                 </div>
             @endif
 
-            <div class="main">
-                <h1>Rent IT</h1>
+              <div class="main">
+                <div class="center-image">
+                  <a href=""><img src="/images/logo.png" alt=""></a>
+                </div>
                 <ul class="cards">
                   @foreach($infos as $info)
                   <li class="cards_item">
@@ -299,68 +324,33 @@
                         <h2 class="card_title">{{$info->property_name}}</h2>
                         <p class="card_text">{{$info->rental_fee}}</p>  
                         <p class="card_text">{{$info->location}}</p>
-                        <button class="btn card_btn">More Details</button>
+                          <form method="GET" action="{{route('page.show', $info)}}">
+                            <button class="btn card_btn" type="submit">More Details</button>
+                          </form>
                       </div>
                     </div>
                   </li>
              
-                @endforeach 
+                  @endforeach 
                   
                 </ul>
-              </div>
+        </div>
 
-                <!-- <footer>
-                    
-
+                <footer>
                     <div class="row">
-                
                       <div class="column">
-                
-                        <h4>About Us</h4>
-                
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in metus euismod, faucibus metus ut, semper nibh. Aenean euismod justo eu enim dapibus suscipit.</p>
-                
+                        <h4></h4>
                       </div>
-                
                       <div class="column">
-                
-                        <h4>Quick Links</h4>
-                
-                        <ul>
-                
-                          <li><a href="#"><i class="fa fa-angle-right"></i> Subscription</a></li>
-                
-                          <li><a href="#"><i class="fa fa-angle-right"></i> Contact us</a></li>
-                
-                          <li><a href="#"><i class="fa fa-angle-right"></i> Bug report</a></li>
-                
+                        <p class="copyright">© 2023 All Rights Reserved</p>
+                      </div>
+                      <div class="column">
+                        <h4></h4>
                         </ul>
-                
                       </div>
-                
-                      <div class="column">
-                
-                        <h4>Connect with Us</h4>
-                
-                        <ul class="social-icons">
-                
-                          <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
-                
-                          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                          
-                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                
-                            <li><a href="#"><i class="fa fa-github"></i></a></li>
-                
-                        </ul>
-                
-                      </div>
-                
                     </div>
-                
-                    <p class="copyright">© 2023 All Rights Reserved</p>
-                
-                  </footer> -->\
+                    
+                </footer>
                   {{-- flowbite --}}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     </body>
